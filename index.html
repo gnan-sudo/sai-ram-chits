@@ -2,53 +2,76 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sai Ram Chits</title>
+<script src="config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Noto+Sans+Telugu:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef2f5;--card:#fff;--ink:#14213d;--mut:#5b677d;--line:#d5dce6;--acc:#0f7b6c;--gold:#e8a317;--bad:#b3261e;--good:#0f7b6c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1626;--card:#16213a;--ink:#e8edf6;--mut:#9aa7bd;--line:#2a3856;--acc:#3fc1ae;--gold:#f2b830;--bad:#ff8a80;--good:#3fc1ae}}
-:root[data-theme="dark"]{--bg:#0e1626;--card:#16213a;--ink:#e8edf6;--mut:#9aa7bd;--line:#2a3856;--acc:#3fc1ae;--gold:#f2b830;--bad:#ff8a80;--good:#3fc1ae}
+:root{--bg:#e8f1ef;--card:#fff;--ink:#12263a;--mut:#58708a;--line:#d3e2de;--acc:#0f7b6c;--gold:#f2b830;--bad:#c0392b;--good:#0f7b6c;--sh:0 6px 20px rgba(18,38,58,.09);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1424;--card:#13203a;--ink:#eaf0fa;--mut:#9db0c9;--line:#243556;--acc:#3fc1ae;--bad:#ff8a80;--good:#3fc1ae;--sh:0 6px 20px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#0a1424;--card:#13203a;--ink:#eaf0fa;--mut:#9db0c9;--line:#243556;--acc:#3fc1ae;--bad:#ff8a80;--good:#3fc1ae;--sh:0 6px 20px rgba(0,0,0,.35)}
 *,*:before,*:after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,"Noto Sans Telugu",system-ui,sans-serif;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
-main{max-width:980px;margin:0 auto;padding:14px 14px 70px}
-header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-h1{font-size:28px;font-weight:800;margin:0}h2{font-size:17px;margin:0 0 10px;font-weight:800}
-.sub{color:var(--mut);margin:2px 0 12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px}
-.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-label{display:block;font-size:13px;color:var(--mut);margin-bottom:3px}
-input,select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);font:inherit}
-input:focus,select:focus,button:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
-button{font:inherit;font-weight:600;padding:9px 14px;border-radius:7px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
-button.p{background:var(--acc);border-color:var(--acc);color:#fff}
-:root:not([data-theme="light"]) button.p{color:#06251f}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,"Noto Sans Telugu",system-ui,sans-serif;font-size:16px;line-height:1.55;font-variant-numeric:tabular-nums}
+main{max-width:1000px;margin:0 auto;padding:12px 12px 96px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hero{background:linear-gradient(135deg,#0b4d46 0%,#14315c 100%);color:#fff;border-radius:22px;padding:18px 20px 20px;margin-bottom:14px;box-shadow:var(--sh)}
+.hero .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:24px}
+h1{font-size:30px;font-weight:800;margin:0;letter-spacing:-.3px}
+h2{font-size:18px;margin:0 0 12px;font-weight:800}
+.sub{margin:8px 0 12px;color:rgba(255,255,255,.82)}
+.ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.hero select,.hero button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.35);padding:8px 12px;width:auto}
+.hero select option{color:#12263a}
+.badge{font-size:13px;font-weight:600;padding:3px 12px;border-radius:99px;background:var(--gold);color:#12263a}
+.pt{font-weight:600;margin-bottom:8px}
+.dots{display:flex;gap:6px;flex-wrap:wrap}
+.dot{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.22)}
+.dot.done{background:var(--gold)}.dot.cur{background:transparent;border:2px solid var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:var(--sh)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+label{display:block;font-size:14px;color:var(--mut);margin-bottom:4px}
+input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+input:focus,select:focus,button:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
+button{font:inherit;font-weight:600;padding:11px 18px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+button.p{background:linear-gradient(135deg,#12917f,#0b6a5d);border-color:transparent;color:#fff}
 button.d{color:var(--bad)}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.hd select{width:auto;font-weight:600}
-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-nav button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.badge{font-size:12px;padding:2px 8px;border-radius:99px;border:1px solid var(--gold);color:var(--ink)}
-.stats{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:14px}
-.stat{border-left:4px solid var(--gold);background:var(--card);border-radius:6px;padding:10px 12px;border:1px solid var(--line);border-left:4px solid var(--gold)}
-.stat b{display:block;font-size:21px}.stat span{color:var(--mut);font-size:13px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row.sp{justify-content:space-between}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+nav button{display:flex;gap:8px;align-items:center;border-radius:99px;padding:10px 18px;box-shadow:var(--sh)}
+nav button i{font-style:normal}
+nav button.on{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c,var(--gold));border-radius:14px;padding:14px;box-shadow:var(--sh)}
+.stat i{font-style:normal;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;font-size:20px;background:color-mix(in srgb,var(--c) 16%,transparent);margin-bottom:6px}
+.stat b{display:block;font-size:24px;line-height:1.2}.stat span{color:var(--mut);font-size:14px}
+.stat.sm{border-top-width:1px;box-shadow:none;padding:10px 12px}.stat.sm b{font-size:20px}
+.banner{background:color-mix(in srgb,var(--gold) 22%,var(--card));border:1px solid var(--gold);border-radius:14px;padding:12px 16px;margin-bottom:14px;font-weight:600}
 .wrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%;min-width:560px}
-th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th,td{padding:10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
 th:first-child,td:first-child,th.l,td.l{text-align:left}
-th{font-size:13px;color:var(--mut);font-weight:600}
-tr.cur td{background:color-mix(in srgb,var(--gold) 18%,transparent)}
-.pos{color:var(--good);font-weight:600}.neg{color:var(--bad);font-weight:600}
-.note{font-size:13px;color:var(--mut)}
-.calc{background:var(--bg);border-radius:8px;padding:10px 12px;margin:8px 0}
-.calc div{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;max-width:92vw;z-index:20}
+th{font-size:14px;color:var(--mut);font-weight:600;background:var(--bg)}
+tr:nth-child(even) td{background:color-mix(in srgb,var(--bg) 45%,transparent)}
+tr.cur td{background:color-mix(in srgb,var(--gold) 24%,transparent)}
+.pos{color:var(--good);font-weight:700}.neg{color:var(--bad);font-weight:700}
+.note{font-size:14px;color:var(--mut)}
+.pill{font-size:13px;font-weight:600;padding:3px 12px;border-radius:99px;background:var(--bg);border:1px solid var(--line)}
+.pill.ok{background:color-mix(in srgb,var(--good) 18%,transparent);border-color:var(--good)}
+.pill.warn{background:color-mix(in srgb,var(--gold) 28%,transparent);border-color:var(--gold)}
+.av{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;color:#fff;font-size:13px;font-weight:700;margin-right:8px;vertical-align:middle}
+.calc{background:var(--bg);border-left:5px solid var(--gold);border-radius:12px;padding:12px 14px;margin:12px 0}
+.calc div{display:flex;justify-content:space-between;gap:12px;padding:3px 0}.calc b{font-size:18px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(86px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--card);padding:12px 18px;border-radius:12px;max-width:92vw;z-index:30;box-shadow:var(--sh)}
 .toast[hidden]{display:none}
+@media (max-width:700px){h1{font-size:24px}
+ nav{position:fixed;left:0;right:0;bottom:0;margin:0;gap:0;background:var(--card);border-top:1px solid var(--line);z-index:20;padding-bottom:env(safe-area-inset-bottom,0px)}
+ nav button{flex:1;flex-direction:column;gap:2px;border-radius:0;border:0;box-shadow:none;padding:8px 2px;font-size:12px;background:transparent;color:var(--mut)}
+ nav button i{font-size:20px}nav button.on{background:transparent;color:var(--acc);border-top:3px solid var(--acc)}}
 </style></head><body><main>
-<header class="hd"><div><h1 id="ttl"></h1></div>
-<div class="row"><span class="badge" id="role"></span>
-<label style="margin:0" for="lang" id="llab"></label><select id="lang"><option value="en">English</option><option value="te">తెలుగు</option></select>
-<button id="theme">◐</button><button id="out" data-act="signout" hidden></button></div></header>
-<p class="sub" id="sub"></p>
+<header class="hero"><div class="top"><div class="brand"><span class="logo">🪙</span><h1 id="ttl"></h1></div>
+<div class="ctl"><span class="badge" id="role"></span><label for="lang" id="llab" class="sr"></label><select id="lang"><option value="en">English</option><option value="te">తెలుగు</option></select><button id="theme" aria-label="theme">◐</button><button id="out" data-act="signout" hidden></button></div></div>
+<p class="sub" id="sub"></p><div id="prog"></div></header>
 <nav id="nav"></nav>
 <div id="view"></div>
 <div class="toast" id="toast" hidden role="status"></div>
@@ -63,51 +86,51 @@ app:"Sai Ram Chits",sub:"Monthly bidding (chit paata), payouts and member ledger
 nDash:"Dashboard",nBid:"Bidding",nMem:"Members",nSet:"Setup",nAud:"Audit log",rAdmin:"Admin",rMem:"Member",
 signIn:"Please sign in to claude.ai to open this app. Ask the Admin to share it with you.",loading:"Loading…",
 notSetup:"The chit has not been set up yet.",
-sMonths:"Months done",sVal:"Chit value",sMin:"Month 1 payout at minimum",sInst:"Monthly installment at minimum",sDisc:"Discount shared so far",
+sMonths:"Months done",sVal:"Chit value",sMin:"Month 1 payout at minimum",sInst:"Installment per ticket at minimum",sDisc:"Discount shared so far",
 my:"My chit",myNoReg:"You are not registered as a member yet. Ask the Admin to add you.",myWon:"Chit taken in month",myNot:"Not taken yet",myPaid:"Paid so far",myRec:"Received",myDiv:"Dividends earned",myNet:"Net",myDue:"Installment for the current month",
-sch:"Month by month",mo:"Month",win:"Winner",disc:"Discount",pay:"Payout",ins:"Installment",divE:"Dividend each",now:"Bidding now",pend:"Pending",wpay:"winners pay {a}",
+sch:"Month by month",mo:"Month",win:"Winner",disc:"Discount",pay:"Payout",ins:"Installment per ticket",divE:"Dividend each",now:"Bidding now",pend:"Pending",wpay:"winners pay {a}",
 led:"Member ledger",ledN:"Net = money received minus money paid so far. Visible to the Admin only.",mem:"Member",wonIn:"Won in month",paid:"Paid",rec:"Received",divs:"Dividends earned",net:"Net",
 bidT:"Month {k}: chit paata (bidding)",bidN:"Eligible members enter the discount they accept. The highest bid between {min} and {max} wins.",
 your:"Your bid",place:"Place bid",saved:"Your bid is saved.",bids:"Bids so far",noBids:"No bids yet",lead:"Leading",none:"No bids yet, showing the minimum",
 recv:"Winner receives",each:"Each member pays",coll:"Winner collects from the other {n} members",dEach:"Dividend to each member",decl:"Declare winner",
-man:"Record a bid made in person",pick:"Select member",rec2:"Record winner",undo:"Undo last month",
+man:"Record the winning bid made in person",pick:"Select member",rec2:"Record winner",undo:"Undo last month",
 fin:"Month {k}: final month",finT:"{n} is the only member left and takes the full {a} with no discount.",recFin:"Record final month",done:"Chit completed",doneT:"All members have taken the chit.",notElig:"You are not eligible to bid this month.",
-mT:"Members ({a} of {n})",addT:"Add a member",srch:"Search by name or email",add:"Add",noRes:"No registered people found. Ask them to create an account first.",
+mT:"Members ({a})",addT:"Add a member",srch:"Search by name or email",add:"Add",noRes:"No registered people found. Ask them to create an account first.",
 no:"No.",name:"Name",st:"Status",act:"Actions",on:"Active",off:"Inactive",deact:"Deactivate",activ:"Activate",rm:"Remove",
-mHelp:"Ask each person to create an account on the sign-in page, then add them here from the list. Only people who have created an account can be added.",
-setT:"Chit setup",fName:"Chit name",fN:"Members",fAmt:"Chit value (₹)",fDur:"Duration (months)",fMin:"Minimum discount (₹)",fMax:"Maximum discount (₹)",fFull:"Earlier winners pay the full installment (standard practice).",save:"Save setup",reset:"Reset chit",
+mHelp:"For members who want to see their own chit and place their own bids from a phone: ask them to create an account on the sign-in page, then add them here.",
+setT:"Chit setup",fName:"Chit name",fN:"Total tickets (= months)",fAmt:"Chit value (₹)",fDur:"Duration (months)",fMin:"Minimum discount (₹)",fMax:"Maximum discount (₹)",fFull:"Earlier winners pay the full installment (standard practice).",save:"Save setup",reset:"Reset chit",
 audT:"Audit log",when:"When",by:"By",what:"Action",det:"Details",noAud:"No entries yet.",
 a_setup:"Setup saved",a_add:"Member added",a_edit:"Member renamed",a_on:"Member activated",a_off:"Member deactivated",a_rm:"Member removed",a_win:"Winner declared",a_undo:"Month undone",a_reset:"Chit reset",
 eperm:"You do not have permission for this action.",eadm:"This page is only for the Admin.",ebid:"Enter a bid between {min} and {max}.",enob:"Enter at least one valid bid first.",
 elock:"Members and chit value cannot change after months are recorded. Reset the chit first.",efull:"The chit already has {n} members.",ewon:"This member has already taken a chit and cannot be removed. Deactivate instead.",
 edup:"This person is already a member.",einact:"Your membership is inactive. Contact the Admin.",emm:"Maximum must not be below minimum.",efail:"Something went wrong. Please try again.",eneed:"Exactly one eligible member must remain for the final month.",
 cTie:"{c} members bid {a}. Pick the winner by draw?",cDecl:"Declare {n} as winner with discount {a}?",cUndo:"Undo the last recorded month?",cReset:"Clear all recorded months and bids?",cRm:"Remove {n} from the chit?",
-email:"Email",pw:"Password",yname:"Your name (new accounts only)",login:"Sign in",signup:"Create account",signout:"Sign out",eauth:"Wrong email or password.",econf:"Account created. Check your email to confirm it, then sign in.",ecfg:"This app is not connected to Supabase yet. Open index.html and fill in SUPABASE_URL and SUPABASE_KEY.",epw:"Password must be at least 8 characters.",ok:"Done."},
+email:"Email",pw:"Password",yname:"Your name (new accounts only)",login:"Sign in",signup:"Create account",signout:"Sign out",eauth:"Wrong email or password.",econf:"Account created. Check your email to confirm it, then sign in.",ecfg:"This app is not connected to Supabase yet. Open config.js and fill in the URL and key.",epw:"Password must be at least 8 characters.",tix:"Tickets",tixA:"Tickets assigned: {a} of {n}",byName:"Add a member by name",byNameN:"No account or login needed. You will enter their bids during the chit paata.",fullName:"Full name",withAcc:"Add someone who already has an account (optional)",etick:"Assign all {n} tickets to members first. Assigned now: {a}.",etixlow:"A member cannot have fewer tickets than the chits already won.",etixover:"This would exceed the {n} tickets in the chit.",ename:"Enter a name.",a_tix:"Tickets changed",progress:"Month {a} of {b}",lastWin:"Month {k} winner: {n} received {a}",dueN:"Based on the minimum discount. The exact amount depends on the winning bid.",ok:"Done."},
 te:{
 app:"సాయి రామ్ చిట్స్",sub:"నెలవారీ చిట్ పాట, చెల్లింపులు మరియు సభ్యుల ఖాతా వివరాలు.",lang:"భాష",
 nDash:"డ్యాష్‌బోర్డ్",nBid:"పాట",nMem:"సభ్యులు",nSet:"సెటప్",nAud:"ఆడిట్ లాగ్",rAdmin:"అడ్మిన్",rMem:"సభ్యుడు",
 signIn:"ఈ యాప్ తెరవడానికి దయచేసి claude.ai లో సైన్ ఇన్ చేయండి. మీకు షేర్ చేయమని అడ్మిన్‌ను అడగండి.",loading:"లోడ్ అవుతోంది…",
 notSetup:"చిట్ ఇంకా సెటప్ చేయలేదు.",
-sMonths:"పూర్తైన నెలలు",sVal:"చిట్ విలువ",sMin:"కనీస పాటతో 1వ నెల చెల్లింపు",sInst:"కనీస పాటతో నెలవారీ వాయిదా",sDisc:"ఇప్పటి వరకు పంచిన డిస్కౌంట్",
+sMonths:"పూర్తైన నెలలు",sVal:"చిట్ విలువ",sMin:"కనీస పాటతో 1వ నెల చెల్లింపు",sInst:"కనీస పాటతో ఒక టికెట్ వాయిదా",sDisc:"ఇప్పటి వరకు పంచిన డిస్కౌంట్",
 my:"నా చిట్",myNoReg:"మీరు ఇంకా సభ్యునిగా నమోదు కాలేదు. మిమ్మల్ని చేర్చమని అడ్మిన్‌ను అడగండి.",myWon:"చిట్ తీసుకున్న నెల",myNot:"ఇంకా తీసుకోలేదు",myPaid:"ఇప్పటి వరకు చెల్లించినది",myRec:"అందుకున్నది",myDiv:"వచ్చిన డివిడెండ్",myNet:"నికరం",myDue:"ఈ నెల వాయిదా",
-sch:"నెల వారీగా",mo:"నెల",win:"విజేత",disc:"డిస్కౌంట్",pay:"చెల్లింపు",ins:"వాయిదా",divE:"ఒక్కొక్కరికి డివిడెండ్",now:"పాట జరుగుతోంది",pend:"పెండింగ్",wpay:"గెలిచినవారు {a}",
+sch:"నెల వారీగా",mo:"నెల",win:"విజేత",disc:"డిస్కౌంట్",pay:"చెల్లింపు",ins:"వాయిదా (ఒక టికెట్‌కు)",divE:"ఒక్కొక్కరికి డివిడెండ్",now:"పాట జరుగుతోంది",pend:"పెండింగ్",wpay:"గెలిచినవారు {a}",
 led:"సభ్యుల ఖాతా",ledN:"నికరం = అందుకున్న మొత్తం − చెల్లించిన మొత్తం. ఇది అడ్మిన్‌కు మాత్రమే కనిపిస్తుంది.",mem:"సభ్యుడు",wonIn:"గెలిచిన నెల",paid:"చెల్లించినది",rec:"అందుకున్నది",divs:"వచ్చిన డివిడెండ్",net:"నికరం",
 bidT:"{k}వ నెల: చిట్ పాట",bidN:"అర్హులైన సభ్యులు తాము అంగీకరించే డిస్కౌంట్ నమోదు చేయాలి. {min} నుండి {max} మధ్య అత్యధిక పాట గెలుస్తుంది.",
 your:"మీ పాట",place:"పాట వేయండి",saved:"మీ పాట నమోదైంది.",bids:"ఇప్పటి వరకు పాటలు",noBids:"ఇంకా పాటలు లేవు",lead:"ముందున్నవారు",none:"ఇంకా పాటలు లేవు, కనీస మొత్తం చూపుతున్నాం",
 recv:"విజేతకు అందేది",each:"ప్రతి సభ్యుడు చెల్లించేది",coll:"విజేత మిగతా {n} మంది సభ్యుల నుండి అందుకునేది",dEach:"ప్రతి సభ్యునికి డివిడెండ్",decl:"విజేతను ప్రకటించండి",
-man:"నేరుగా జరిగిన పాటను నమోదు చేయండి",pick:"సభ్యుని ఎంచుకోండి",rec2:"విజేతను నమోదు చేయండి",undo:"చివరి నెలను రద్దు చేయండి",
+man:"నేరుగా జరిగిన విజేత పాటను నమోదు చేయండి",pick:"సభ్యుని ఎంచుకోండి",rec2:"విజేతను నమోదు చేయండి",undo:"చివరి నెలను రద్దు చేయండి",
 fin:"{k}వ నెల: చివరి నెల",finT:"{n} ఒక్కరే మిగిలారు; డిస్కౌంట్ లేకుండా పూర్తి {a} తీసుకుంటారు.",recFin:"చివరి నెలను నమోదు చేయండి",done:"చిట్ పూర్తైంది",doneT:"సభ్యులందరూ చిట్ తీసుకున్నారు.",notElig:"ఈ నెల పాటకు మీరు అర్హులు కారు.",
-mT:"సభ్యులు ({n} లో {a})",addT:"సభ్యుని చేర్చండి",srch:"పేరు లేదా ఈమెయిల్‌తో వెతకండి",add:"చేర్చండి",noRes:"నమోదైన వారు ఎవరూ దొరకలేదు. ముందుగా వారిని ఖాతా తెరవమని చెప్పండి.",
+mT:"సభ్యులు ({a})",addT:"సభ్యుని చేర్చండి",srch:"పేరు లేదా ఈమెయిల్‌తో వెతకండి",add:"చేర్చండి",noRes:"నమోదైన వారు ఎవరూ దొరకలేదు. ముందుగా వారిని ఖాతా తెరవమని చెప్పండి.",
 no:"సంఖ్య",name:"పేరు",st:"స్థితి",act:"చర్యలు",on:"చురుకుగా",off:"నిష్క్రియం",deact:"నిష్క్రియం చేయండి",activ:"చురుకుగా చేయండి",rm:"తొలగించండి",
-mHelp:"ప్రతి వ్యక్తిని సైన్ ఇన్ పేజీలో ఖాతా తెరవమని చెప్పండి, ఆపై ఇక్కడ జాబితా నుండి చేర్చండి. ఖాతా తెరిచినవారిని మాత్రమే చేర్చగలరు.",
-setT:"చిట్ సెటప్",fName:"చిట్ పేరు",fN:"సభ్యులు",fAmt:"చిట్ విలువ (₹)",fDur:"వ్యవధి (నెలలు)",fMin:"కనీస డిస్కౌంట్ (₹)",fMax:"గరిష్ఠ డిస్కౌంట్ (₹)",fFull:"ముందు గెలిచినవారు పూర్తి వాయిదా చెల్లిస్తారు (సాధారణ పద్ధతి).",save:"సెటప్ సేవ్ చేయండి",reset:"చిట్ రీసెట్ చేయండి",
+mHelp:"తమ చిట్ వివరాలు చూడాలని, ఫోన్ నుండి పాట వేయాలని అనుకునే సభ్యులకు: సైన్ ఇన్ పేజీలో ఖాతా తెరవమని చెప్పి, ఆపై ఇక్కడ చేర్చండి.",
+setT:"చిట్ సెటప్",fName:"చిట్ పేరు",fN:"మొత్తం టికెట్లు (= నెలలు)",fAmt:"చిట్ విలువ (₹)",fDur:"వ్యవధి (నెలలు)",fMin:"కనీస డిస్కౌంట్ (₹)",fMax:"గరిష్ఠ డిస్కౌంట్ (₹)",fFull:"ముందు గెలిచినవారు పూర్తి వాయిదా చెల్లిస్తారు (సాధారణ పద్ధతి).",save:"సెటప్ సేవ్ చేయండి",reset:"చిట్ రీసెట్ చేయండి",
 audT:"ఆడిట్ లాగ్",when:"ఎప్పుడు",by:"చేసినవారు",what:"చర్య",det:"వివరాలు",noAud:"ఇంకా ఏమీ లేవు.",
 a_setup:"సెటప్ సేవ్ అయింది",a_add:"సభ్యుడు చేర్చబడ్డారు",a_edit:"సభ్యుని పేరు మార్చారు",a_on:"సభ్యుడు చురుకుగా చేయబడ్డారు",a_off:"సభ్యుడు నిష్క్రియం చేయబడ్డారు",a_rm:"సభ్యుడు తొలగించబడ్డారు",a_win:"విజేత ప్రకటించబడ్డారు",a_undo:"నెల రద్దు చేయబడింది",a_reset:"చిట్ రీసెట్ అయింది",
 eperm:"ఈ చర్యకు మీకు అనుమతి లేదు.",eadm:"ఈ పేజీ అడ్మిన్‌కు మాత్రమే.",ebid:"{min} నుండి {max} మధ్య పాట నమోదు చేయండి.",enob:"ముందుగా కనీసం ఒక సరైన పాట ఉండాలి.",
 elock:"నెలలు నమోదైన తర్వాత సభ్యుల సంఖ్య, చిట్ విలువ మార్చలేరు. ముందు చిట్ రీసెట్ చేయండి.",efull:"చిట్‌లో ఇప్పటికే {n} మంది సభ్యులు ఉన్నారు.",ewon:"ఈ సభ్యుడు ఇప్పటికే చిట్ తీసుకున్నారు, తొలగించలేరు. బదులుగా నిష్క్రియం చేయండి.",
 edup:"ఈ వ్యక్తి ఇప్పటికే సభ్యుడు.",einact:"మీ సభ్యత్వం నిష్క్రియంగా ఉంది. అడ్మిన్‌ను సంప్రదించండి.",emm:"గరిష్ఠం కనీసం కంటే తక్కువ ఉండకూడదు.",efail:"ఏదో పొరపాటు జరిగింది. దయచేసి మళ్లీ ప్రయత్నించండి.",eneed:"చివరి నెలకు సరిగ్గా ఒక్క అర్హుడైన సభ్యుడు మిగిలి ఉండాలి.",
 cTie:"{c} మంది {a} పాడారు. లాటరీ ద్వారా విజేతను ఎంచుకోవాలా?",cDecl:"{a} డిస్కౌంట్‌తో {n} ను విజేతగా ప్రకటించాలా?",cUndo:"చివరి నమోదైన నెలను రద్దు చేయాలా?",cReset:"నమోదైన అన్ని నెలలు, పాటలు తొలగించాలా?",cRm:"{n} ను చిట్ నుండి తొలగించాలా?",
-email:"ఈమెయిల్",pw:"పాస్‌వర్డ్",yname:"మీ పేరు (కొత్త ఖాతాకు మాత్రమే)",login:"సైన్ ఇన్",signup:"ఖాతా తెరవండి",signout:"సైన్ అవుట్",eauth:"ఈమెయిల్ లేదా పాస్‌వర్డ్ తప్పు.",econf:"ఖాతా తెరవబడింది. ఈమెయిల్‌లో ధృవీకరించి, ఆ తర్వాత సైన్ ఇన్ చేయండి.",ecfg:"ఈ యాప్ ఇంకా Supabase కు కనెక్ట్ కాలేదు. index.html తెరిచి SUPABASE_URL, SUPABASE_KEY నింపండి.",epw:"పాస్‌వర్డ్ కనీసం 8 అక్షరాలు ఉండాలి.",ok:"పూర్తైంది."}};
+email:"ఈమెయిల్",pw:"పాస్‌వర్డ్",yname:"మీ పేరు (కొత్త ఖాతాకు మాత్రమే)",login:"సైన్ ఇన్",signup:"ఖాతా తెరవండి",signout:"సైన్ అవుట్",eauth:"ఈమెయిల్ లేదా పాస్‌వర్డ్ తప్పు.",econf:"ఖాతా తెరవబడింది. ఈమెయిల్‌లో ధృవీకరించి, ఆ తర్వాత సైన్ ఇన్ చేయండి.",ecfg:"ఈ యాప్ ఇంకా Supabase కు కనెక్ట్ కాలేదు. config.js తెరిచి URL, key నింపండి.",epw:"పాస్‌వర్డ్ కనీసం 8 అక్షరాలు ఉండాలి.",tix:"టికెట్లు",tixA:"కేటాయించిన టికెట్లు: {n} లో {a}",byName:"పేరుతో సభ్యుని చేర్చండి",byNameN:"ఖాతా లేదా లాగిన్ అవసరం లేదు. చిట్ పాట సమయంలో వారి పాటలను మీరే నమోదు చేస్తారు.",fullName:"పూర్తి పేరు",withAcc:"ఇప్పటికే ఖాతా ఉన్నవారిని చేర్చండి (ఐచ్ఛికం)",etick:"ముందుగా మొత్తం {n} టికెట్లను సభ్యులకు కేటాయించండి. ఇప్పుడు కేటాయించినవి: {a}.",etixlow:"ఇప్పటికే గెలిచిన చిట్ల కంటే తక్కువ టికెట్లు ఉండకూడదు.",etixover:"ఇది చిట్‌లోని {n} టికెట్లను మించిపోతుంది.",ename:"పేరు నమోదు చేయండి.",a_tix:"టికెట్లు మార్చారు",progress:"{b} నెలల్లో {a}వ నెల",lastWin:"{k}వ నెల విజేత: {n}, అందుకున్నది {a}",dueN:"కనీస డిస్కౌంట్ ఆధారంగా. అసలు మొత్తం గెలిచిన పాటపై ఆధారపడి ఉంటుంది.",ok:"పూర్తైంది."}};
 let LANG='en';
 const t=(k,v)=>{let s=(T[LANG][k]??T.en[k]??k);if(v)for(const x in v)s=s.split('{'+x+'}').join(v[x]);return s};
 /* ---------- State ---------- */
@@ -116,9 +139,13 @@ const ADMIN_TABS=['setup','audit'];
 const reg=()=>Object.entries(MEM).map(([id,m])=>({id,...m})).sort((a,b)=>a.no-b.no);
 const nm=id=>MEM[id]?MEM[id].name:'?';
 const won=()=>MON.map(m=>m.w);
+const tixUsed=()=>reg().reduce((a,r)=>a+(r.shares||1),0),tixOK=()=>tixUsed()===CFG.n;
+const ini=n=>String(n).trim().split(/\s+/).slice(0,2).map(w=>Array.from(w)[0]||'').join('').toUpperCase();
+const col=n=>{let h=0;for(const c of String(n))h=(h*31+c.codePointAt(0))%360;return 'hsl('+h+',55%,38%)'};
+const wl=k=>{const m=MON[k],sh=(MEM[m.w]||{}).shares||1,j=MON.slice(0,k+1).filter(x=>x.w===m.w).length;return nm(m.w)+(sh>1?' ('+j+'/'+sh+')':'')};
 const instOf=(u,k)=>(CFG.full&&MON.slice(0,k).some(x=>x.w===u))?CFG.amt/CFG.n:(CFG.amt-MON[k].d)/CFG.n;
-function ledger(){return reg().map(r=>{let paid=0,rec=0,div=0;MON.forEach((m,k)=>{const p=instOf(r.id,k);paid+=p;if(m.w===r.id)rec+=CFG.amt-m.d;else div+=CFG.amt/CFG.n-p});return{...r,paid,rec,div,net:rec-paid,wk:MON.findIndex(m=>m.w===r.id)}})}
-const eligible=()=>reg().filter(r=>r.active&&!won().includes(r.id));
+function ledger(){return reg().map(r=>{const sh=r.shares||1;let paid=0,rec=0,div=0;MON.forEach((m,k)=>{const wb=MON.slice(0,k).filter(x=>x.w===r.id).length,win=m.w===r.id?1:0,oth=sh-wb-win,p=(CFG.amt-m.d)/CFG.n,fu=CFG.amt/CFG.n,pw=CFG.full?fu:p;paid+=wb*pw+win*p+oth*p;div+=wb*(fu-pw)+oth*(fu-p);rec+=win*(CFG.amt-m.d)});const wks=MON.map((m,k)=>m.w===r.id?k:-1).filter(x=>x>=0);return{...r,shares:sh,paid,rec,div,net:rec-paid,wks,wk:wks.length?wks[0]:-1}})}
+const eligible=()=>reg().filter(r=>r.active&&MON.filter(m=>m.w===r.id).length<(r.shares||1));
 const validBids=()=>{const el=eligible().map(r=>r.id),k=MON.length+1;return Object.entries(BIDS).map(([id,b])=>({id,d:+b.amt,m:b.m})).filter(b=>b.m===k&&el.includes(b.id)&&b.d>=CFG.min&&b.d<=CFG.max).sort((a,b)=>b.d-a.d)};
 function toast(m){const e=$('toast');e.textContent=m;e.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>e.hidden=true,3500)}
 async function W(fn){try{await fn();return true}catch(e){toast(e&&e.code==='not_granted'?t('eperm'):t('efail'));return false}}
@@ -127,7 +154,9 @@ async function audit(a,x){await db.collection('audit').add({ts:Date.now(),by:ME.
 function shell(){document.documentElement.lang=LANG;$('ttl').textContent=CFG&&CFG.name||t('app');document.title=CFG&&CFG.name||t('app');$('sub').textContent=t('sub');$('llab').textContent=t('lang');$('lang').value=LANG;
  $('role').textContent=ME?(ADMIN?t('rAdmin'):t('rMem')):'';$('role').hidden=!ME;$('out').hidden=!ME;$('out').textContent=t('signout');
  const tabs=[['dash','nDash'],['bid','nBid'],['mem','nMem']].concat(ADMIN?[['setup','nSet'],['audit','nAud']]:[]);
- $('nav').innerHTML=ME?tabs.map(x=>`<button data-tab="${x[0]}" class="${tab===x[0]?'on':''}">${t(x[1])}</button>`).join(''):''}
+ const IC={dash:'🏠',bid:'🔨',mem:'👥',setup:'⚙️',audit:'📜'};
+ $('nav').innerHTML=ME?tabs.map(x=>`<button data-tab="${x[0]}" class="${tab===x[0]?'on':''}"><i>${IC[x[0]]}</i><span>${t(x[1])}</span></button>`).join(''):'';
+ $('prog').innerHTML=(ME&&CFG)?`<div class="pt">${MON.length>=CFG.n?t('done'):t('progress',{a:MON.length+1,b:CFG.n})}</div><div class="dots">${Array.from({length:CFG.n},(_,i)=>`<span class="dot ${i<MON.length?'done':i===MON.length?'cur':''}"></span>`).join('')}</div>`:''}
 function render(){shell();const v=$('view');
  if(!sb){v.innerHTML=`<div class="card">${t('ecfg')}</div>`;return}
  if(signedOut){v.innerHTML=loginView();return}
@@ -136,12 +165,16 @@ function render(){shell();const v=$('view');
  if(!CFG&&!(ADMIN&&tab==='setup')){if(ADMIN){tab='setup'}else{v.innerHTML=`<div class="card">${t('notSetup')}</div>`;return}}
  v.innerHTML={dash:vDash,bid:vBid,mem:vMem,setup:vSetup,audit:vAudit}[tab]();
  if(tab==='mem')showSR()}
-function vDash(){const k=MON.length,L=ledger(),me=L.find(r=>r.id===ME.id);
- let h=`<div class="stats">${[['sMonths',k+' / '+CFG.n],['sVal',inr(CFG.amt)],['sMin',inr(CFG.amt-CFG.min)],['sInst',inr((CFG.amt-CFG.min)/CFG.n)],['sDisc',inr(MON.reduce((a,m)=>a+m.d,0))]].map(s=>`<div class="stat"><b>${s[1]}</b><span>${t(s[0])}</span></div>`).join('')}</div>`;
- h+=`<div class="card"><h2>${t('my')}</h2>`+(me?`<div class="stats">${[['myWon',me.wk>=0?me.wk+1:t('myNot')],['myPaid',inr(me.paid)],['myRec',inr(me.rec)],['myDiv',inr(me.div)],['myNet',(me.net>=0?'+':'-')+inr(Math.abs(me.net))],['myDue',k<CFG.n?inr(CFG.full&&me.wk>=0?CFG.amt/CFG.n:(CFG.amt-CFG.min)/CFG.n)+'*':'-']].map(s=>`<div class="stat"><b>${s[1]}</b><span>${t(s[0])}</span></div>`).join('')}</div>${k<CFG.n?'<p class="note">* '+t('sInst')+'</p>':''}`:`<p>${t('myNoReg')}</p>`)+'</div>';
+function vDash(){const k=MON.length,L=ledger(),me=L.find(r=>r.id===ME.id),n=CFG.n;
+ const cards=[['💰',inr(CFG.amt),'sVal','#0f7b6c'],['🎯',inr(CFG.amt-CFG.min),'sMin','#e0a010'],['📅',inr((CFG.amt-CFG.min)/n),'sInst','#3a5bd9'],['🤝',inr(MON.reduce((a,m)=>a+m.d,0)),'sDisc','#d6455d']];
+ let h=`<div class="stats">${cards.map(c=>`<div class="stat" style="--c:${c[3]}"><i>${c[0]}</i><b>${c[1]}</b><span>${t(c[2])}</span></div>`).join('')}</div>`;
+ if(k)h+=`<div class="banner">🏆 ${t('lastWin',{k:k,n:esc(wl(k-1)),a:inr(CFG.amt-MON[k-1].d)})}</div>`;
+ if(me){const w=me.wks.length,due=CFG.full?w*CFG.amt/n+(me.shares-w)*(CFG.amt-CFG.min)/n:me.shares*(CFG.amt-CFG.min)/n;
+  h+=`<div class="card"><h2>${t('my')}: ${esc(me.name)}</h2><div class="stats">${[['tix',me.shares],['myWon',w?me.wks.map(x=>x+1).join(', '):t('myNot')],['myPaid',inr(me.paid)],['myRec',inr(me.rec)],['myDiv',inr(me.div)],['myNet',(me.net>=0?'+':'-')+inr(Math.abs(me.net)),me.net>=0?'pos':'neg'],['myDue',k<n?inr(due)+'*':'-']].map(s=>`<div class="stat sm"><b class="${s[2]||''}">${s[1]}</b><span>${t(s[0])}</span></div>`).join('')}</div>${k<n?`<p class="note">* ${t('dueN')}</p>`:''}</div>`}
+ else if(!ADMIN)h+=`<div class="card"><h2>${t('my')}</h2><p>${t('myNoReg')}</p></div>`;
  h+=`<div class="card"><h2>${t('sch')}</h2><div class="wrap"><table><tr><th>${t('mo')}</th><th class="l">${t('win')}</th><th>${t('disc')}</th><th>${t('pay')}</th><th>${t('ins')}</th><th>${t('divE')}</th></tr>`+
- Array.from({length:CFG.n},(_,i)=>{const m=MON[i];return m?`<tr><td>${i+1}</td><td class="l">${esc(nm(m.w))}</td><td>${inr(m.d)}</td><td>${inr(CFG.amt-m.d)}</td><td>${inr((CFG.amt-m.d)/CFG.n)}${CFG.full&&i>0?' <span class="note">('+t('wpay',{a:inr(CFG.amt/CFG.n)})+')</span>':''}</td><td>${inr(m.d/CFG.n)}</td></tr>`:`<tr class="${i===k?'cur':''}"><td>${i+1}</td><td class="l note">${i===k?t('now'):t('pend')}</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>`}).join('')+'</table></div></div>';
- if(ADMIN)h+=`<div class="card"><h2>${t('led')}</h2><p class="note">${t('ledN')}</p><div class="wrap"><table><tr><th class="l">${t('mem')}</th><th>${t('wonIn')}</th><th>${t('paid')}</th><th>${t('rec')}</th><th>${t('divs')}</th><th>${t('net')}</th></tr>${L.map(r=>`<tr><td class="l">${esc(r.name)}</td><td>${r.wk>=0?r.wk+1:'-'}</td><td>${inr(r.paid)}</td><td>${r.rec?inr(r.rec):'-'}</td><td>${inr(r.div)}</td><td class="${r.net>=0?'pos':'neg'}">${r.net>=0?'+':'-'}${inr(Math.abs(r.net))}</td></tr>`).join('')}</table></div></div>`;
+ Array.from({length:n},(_,i)=>{const m=MON[i];return m?`<tr><td>${i+1}</td><td class="l"><span class="av" style="background:${col(nm(m.w))}">${esc(ini(nm(m.w)))}</span>${esc(wl(i))}</td><td>${inr(m.d)}</td><td>${inr(CFG.amt-m.d)}</td><td>${inr((CFG.amt-m.d)/n)}${CFG.full&&i>0?' <span class="note">('+t('wpay',{a:inr(CFG.amt/n)})+')</span>':''}</td><td>${inr(m.d/n)}</td></tr>`:`<tr class="${i===k?'cur':''}"><td>${i+1}</td><td class="l note">${i===k?t('now'):t('pend')}</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>`}).join('')+'</table></div></div>';
+ if(ADMIN)h+=`<div class="card"><h2>${t('led')}</h2><p class="note">${t('ledN')}</p><div class="wrap"><table><tr><th class="l">${t('mem')}</th><th>${t('tix')}</th><th>${t('wonIn')}</th><th>${t('paid')}</th><th>${t('rec')}</th><th>${t('divs')}</th><th>${t('net')}</th></tr>${L.map(r=>`<tr><td class="l"><span class="av" style="background:${col(r.name)}">${esc(ini(r.name))}</span>${esc(r.name)}</td><td>${r.shares}</td><td>${r.wks.length?r.wks.map(x=>x+1).join(', '):'-'}</td><td>${inr(r.paid)}</td><td>${r.rec?inr(r.rec):'-'}</td><td>${inr(r.div)}</td><td class="${r.net>=0?'pos':'neg'}">${r.net>=0?'+':'-'}${inr(Math.abs(r.net))}</td></tr>`).join('')}</table></div></div>`;
  return h}
 function vBid(){const k=MON.length,el=eligible(),mine=reg().find(r=>r.id===ME.id);
  if(k>=CFG.n)return `<div class="card"><h2>${t('done')}</h2><p>${t('doneT')}</p>${ADMIN?`<button data-act="undo">${t('undo')}</button>`:''}</div>`;
@@ -149,28 +182,29 @@ function vBid(){const k=MON.length,el=eligible(),mine=reg().find(r=>r.id===ME.id
  const vb=validBids(),lead=vb[0],d=lead?lead.d:CFG.min;
  let h=`<div class="card"><h2>${t('bidT',{k:k+1})}</h2><p class="note">${t('bidN',{min:inr(CFG.min),max:inr(CFG.max)})}</p>`;
  if(mine&&!mine.active)h+=`<p class="neg">${t('einact')}</p>`;
- else if(mine&&won().includes(mine.id))h+=`<p class="note">${t('notElig')}</p>`;
+ else if(mine&&!el.some(r=>r.id===mine.id))h+=`<p class="note">${t('notElig')}</p>`;
  else if(mine)h+=`<div class="row"><div><label>${t('your')}</label><input id="mybid" type="number" inputmode="numeric" placeholder="${CFG.min}" value="${BIDS[ME.id]&&BIDS[ME.id].m===k+1?BIDS[ME.id].amt:''}"></div><button class="p" data-act="mybid" style="margin-top:18px">${t('place')}</button></div>`;
  h+=`<h2 style="margin-top:14px">${t('bids')}</h2>`+(vb.length?`<div class="wrap"><table style="min-width:260px">${vb.map(b=>`<tr><td class="l">${esc(nm(b.id))}</td><td>${inr(b.d)}</td></tr>`).join('')}</table></div>`:`<p class="note">${t('noBids')}</p>`);
  h+=`<div class="calc"><div><span>${lead?t('lead')+': '+esc(nm(lead.id)):t('none')}</span><b>${t('disc')} ${inr(d)}</b></div><div><span>${t('recv')}</span><b>${inr(CFG.amt-d)}</b></div><div><span>${t('each')}</span><b>${inr((CFG.amt-d)/CFG.n)}</b></div><div><span>${t('coll',{n:CFG.n-1})}</span><b>${inr((CFG.amt-d)/CFG.n*(CFG.n-1))}</b></div><div><span>${t('dEach')}</span><b>${inr(d/CFG.n)}</b></div></div>`;
  if(ADMIN)h+=`<div class="row"><button class="p" data-act="declare">${t('decl')}</button>${k?`<button data-act="undo">${t('undo')}</button>`:''}</div>
- <h2 style="margin-top:16px">${t('man')}</h2><div class="row"><select id="mm" style="width:auto"><option value="">${t('pick')}</option>${el.map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('')}</select><input id="ma" type="number" placeholder="${CFG.min}" style="width:140px"><button data-act="manual">${t('rec2')}</button></div>`;
+ <h2 style="margin-top:16px">${t('man')}</h2><div class="row"><select id="mm" style="width:auto"><option value="">${t('pick')}</option>${el.map(r=>`<option value="${r.id}">${esc(r.name)}${(r.shares||1)>1?' ('+(MON.filter(m=>m.w===r.id).length+1)+'/'+(r.shares||1)+')':''}</option>`).join('')}</select><input id="ma" type="number" placeholder="${CFG.min}" style="width:140px"><button data-act="manual">${t('rec2')}</button></div>`;
  return h+'</div>'}
-function vMem(){const L=ledger(),A=ADMIN;
- let h=`<div class="card"><h2>${t('mT',{a:L.length,n:CFG.n})}</h2><div class="wrap"><table><tr><th>${t('no')}</th><th class="l">${t('name')}</th><th>${t('wonIn')}</th><th>${t('st')}</th>${A?`<th>${t('act')}</th>`:''}</tr>`+
- L.map(r=>`<tr><td>${r.no}</td><td class="l">${A?`<input data-chg="name" data-id="${r.id}" value="${esc(r.name)}" style="min-width:150px">`:esc(r.name)}</td><td>${r.wk>=0?r.wk+1:'-'}</td><td>${r.active?t('on'):t('off')}</td>${A?`<td><button data-act="toggle" data-id="${r.id}">${r.active?t('deact'):t('activ')}</button> <button class="d" data-act="rm" data-id="${r.id}">${t('rm')}</button></td>`:''}</tr>`).join('')+'</table></div></div>';
- if(A)h+=`<div class="card"><h2>${t('addT')}</h2><p class="note">${t('mHelp')}</p><input id="q" placeholder="${t('srch')}"><div id="sr" style="margin-top:8px"></div></div>`;
+function vMem(){const L=ledger(),A=ADMIN,used=tixUsed();
+ let h=`<div class="card"><div class="row sp"><h2>${t('mT',{a:L.length})}</h2><span class="pill ${used===CFG.n?'ok':'warn'}">${t('tixA',{a:used,n:CFG.n})}</span></div><div class="wrap"><table><tr><th>${t('no')}</th><th class="l">${t('name')}</th><th>${t('tix')}</th><th>${t('wonIn')}</th><th>${t('st')}</th>${A?`<th>${t('act')}</th>`:''}</tr>`+
+ L.map(r=>`<tr><td>${r.no}</td><td class="l"><span class="av" style="background:${col(r.name)}">${esc(ini(r.name))}</span>${A?`<input data-chg="name" data-id="${r.id}" value="${esc(r.name)}" style="min-width:170px;width:auto">`:esc(r.name)}</td><td>${A?`<input data-chg="shares" data-id="${r.id}" type="number" min="1" value="${r.shares}" style="width:72px">`:r.shares}</td><td>${r.wks.length?r.wks.map(x=>x+1).join(', '):'-'}</td><td><span class="pill ${r.active?'ok':''}">${r.active?t('on'):t('off')}</span></td>${A?`<td><button data-act="toggle" data-id="${r.id}">${r.active?t('deact'):t('activ')}</button> <button class="d" data-act="rm" data-id="${r.id}">${t('rm')}</button></td>`:''}</tr>`).join('')+'</table></div></div>';
+ if(A)h+=`<div class="card"><h2>${t('byName')}</h2><p class="note">${t('byNameN')}</p><div class="row"><div style="flex:1;min-width:200px"><label>${t('fullName')}</label><input id="nn"></div><div style="width:110px"><label>${t('tix')}</label><input id="nt" type="number" min="1" value="1"></div><button class="p" data-act="addname" style="margin-top:20px">${t('add')}</button></div></div>
+ <div class="card"><h2>${t('withAcc')}</h2><p class="note">${t('mHelp')}</p><input id="q" placeholder="${t('srch')}"><div id="sr" style="margin-top:8px"></div></div>`;
  return h}
 function vSetup(){const c=CFG||{name:T.en.app,n:20,amt:500000,min:110000,max:200000,full:false};
  return `<div class="card"><h2>${t('setT')}</h2><div class="grid"><div><label>${t('fName')}</label><input id="f_name" value="${esc(c.name)}"></div><div><label>${t('fN')}</label><input id="f_n" type="number" min="2" max="100" value="${c.n}"></div><div><label>${t('fAmt')}</label><input id="f_amt" type="number" value="${c.amt}"></div><div><label>${t('fDur')}</label><input id="f_dur" disabled value="${c.n}"></div><div><label>${t('fMin')}</label><input id="f_min" type="number" value="${c.min}"></div><div><label>${t('fMax')}</label><input id="f_max" type="number" value="${c.max}"></div></div>
- <label style="display:flex;gap:6px;align-items:center;margin:10px 0"><input id="f_full" type="checkbox" style="width:auto" ${c.full?'checked':''}> ${t('fFull')}</label>
+ 
  <div class="row"><button class="p" data-act="save">${t('save')}</button>${CFG?`<button class="d" data-act="reset">${t('reset')}</button>`:''}</div></div>`}
 function vAudit(){const loc=LANG==='te'?'te-IN':'en-IN';
  return `<div class="card"><h2>${t('audT')}</h2><div class="wrap"><table><tr><th class="l">${t('when')}</th><th class="l">${t('by')}</th><th class="l">${t('what')}</th><th class="l">${t('det')}</th></tr>${AUD.map(a=>`<tr><td class="l">${new Date(a.ts).toLocaleString(loc)}</td><td class="l">${esc(a.byName||'')}</td><td class="l">${t(a.a)}</td><td class="l">${esc(a.x||'')}</td></tr>`).join('')||`<tr><td class="l note" colspan="4">${t('noAud')}</td></tr>`}</table></div></div>`}
 function showSR(){const e=$('sr');if(!e)return;const ids=SR.filter(p=>!MEM[p.id]);e.innerHTML=ids.map(p=>`<div class="row" style="padding:4px 0"><span style="flex:1">${esc(p.name)} <span class="note">${esc(p.email||'')}</span></span><button class="p" data-act="add" data-id="${p.id}" data-name="${esc(p.name)}">${t('add')}</button></div>`).join('')||($('q')&&$('q').value?`<p class="note">${t('noRes')}</p>`:'')}
 /* ---------- Actions ---------- */
 const need=()=>{if(!ADMIN){toast(t('eperm'));return false}return true};
-async function declare(w,d){if(!need())return;if(!confirm(t('cDecl',{n:nm(w),a:inr(d)})))return;
+async function declare(w,d){if(!need())return;if(!tixOK()){toast(t('etick',{n:CFG.n,a:tixUsed()}));return}if(!confirm(t('cDecl',{n:nm(w),a:inr(d)})))return;
  const k=MON.length+1;await W(async()=>{await db.doc('months/m'+String(k).padStart(2,'0')).set({k,w,d,ts:Date.now()});for(const id of Object.keys(BIDS))await db.doc('bids/'+id).delete();await audit('a_win','#'+k+' '+nm(w)+' '+inr(d))})}
 document.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;
  if(b.dataset.tab){tab=b.dataset.tab;location.hash=tab;render();return}
@@ -180,24 +214,34 @@ document.addEventListener('click',async e=>{const b=e.target.closest('button');i
  if(a==='declare'){const vb=validBids();if(!vb.length){toast(t('enob'));return}const top=vb.filter(x=>x.d===vb[0].d);
   if(top.length>1&&!confirm(t('cTie',{c:top.length,a:inr(vb[0].d)})))return;const w=top[Math.floor(Math.random()*top.length)];return declare(w.id,w.d)}
  if(a==='manual'){const w=$('mm').value,v=+$('ma').value;if(!w||!(v>=CFG.min&&v<=CFG.max)){toast(t('ebid',{min:inr(CFG.min),max:inr(CFG.max)}));return}return declare(w,v)}
- if(a==='final'){if(!need())return;const w=eligible()[0].id,k=MON.length+1;return W(async()=>{await db.doc('months/m'+String(k).padStart(2,'0')).set({k,w,d:0,ts:Date.now()});await audit('a_win','#'+k+' '+nm(w)+' '+inr(0))})}
+ if(a==='final'){if(!need())return;if(!tixOK()){toast(t('etick',{n:CFG.n,a:tixUsed()}));return}const w=eligible()[0].id,k=MON.length+1;return W(async()=>{await db.doc('months/m'+String(k).padStart(2,'0')).set({k,w,d:0,ts:Date.now()});await audit('a_win','#'+k+' '+nm(w)+' '+inr(0))})}
  if(a==='undo'){if(!need()||!confirm(t('cUndo')))return;const m=MON[MON.length-1];return W(async()=>{await db.doc('months/m'+String(m.k).padStart(2,'0')).delete();await audit('a_undo','#'+m.k)})}
  if(a==='reset'){if(!need()||!confirm(t('cReset')))return;return W(async()=>{for(const m of MON)await db.doc('months/m'+String(m.k).padStart(2,'0')).delete();for(const i of Object.keys(BIDS))await db.doc('bids/'+i).delete();await audit('a_reset')})}
- if(a==='save'){if(!need())return;const c={name:$('f_name').value.trim()||T.en.app,n:Math.max(2,Math.min(100,parseInt($('f_n').value)||20)),amt:+$('f_amt').value||0,min:+$('f_min').value||0,max:+$('f_max').value||0,full:$('f_full').checked};
+ if(a==='save'){if(!need())return;const c={name:$('f_name').value.trim()||T.en.app,n:Math.max(2,Math.min(100,parseInt($('f_n').value)||20)),amt:+$('f_amt').value||0,min:+$('f_min').value||0,max:+$('f_max').value||0,full:false};
   if(c.max<c.min){toast(t('emm'));return}if(CFG&&MON.length&&(c.n!==CFG.n||c.amt!==CFG.amt)){toast(t('elock'));return}
   if(await W(async()=>{await db.doc('config/chit').set(c);await audit('a_setup',c.n+' / '+inr(c.amt)+' / '+inr(c.min)+'-'+inr(c.max))})){toast(t('ok'));tab='dash';render()}return}
- if(a==='add'){if(!need())return;if(MEM[id]){toast(t('edup'));return}if(reg().length>=CFG.n){toast(t('efull',{n:CFG.n}));return}
-  const no=Math.max(0,...reg().map(r=>r.no))+1;return W(async()=>{await db.doc('members/'+id).set({name:b.dataset.name,no,active:true,ts:Date.now()});await audit('a_add',b.dataset.name)})}
+ if(a==='add'||a==='addname'){if(!need())return;
+  let nid=id,name=b.dataset.name,sh=1;
+  if(a==='addname'){name=$('nn').value.trim();sh=parseInt($('nt').value)||1;nid=crypto.randomUUID();if(!name){toast(t('ename'));return}}
+  else if(MEM[id]){toast(t('edup'));return}
+  if(sh<1||tixUsed()+sh>CFG.n){toast(t('etixover',{n:CFG.n}));return}
+  const no=Math.max(0,...reg().map(r=>r.no))+1;
+  if(await W(async()=>{await db.doc('members/'+nid).set({name:name,shares:sh,no:no,active:true,ts:Date.now()});await audit('a_add',name+' x'+sh)})&&a==='addname'){$('nn').value=''}return}
  if(a==='toggle'){if(!need())return;const m=MEM[id];return W(async()=>{await db.doc('members/'+id).update({active:!m.active});await audit(m.active?'a_off':'a_on',m.name)})}
  if(a==='rm'){if(!need())return;if(won().includes(id)){toast(t('ewon'));return}if(!confirm(t('cRm',{n:nm(id)})))return;const n=nm(id);return W(async()=>{await db.doc('members/'+id).delete();await audit('a_rm',n)})}});
-document.addEventListener('change',e=>{const el=e.target;if(el.dataset&&el.dataset.chg==='name'){if(!need()){render();return}const v=el.value.trim();if(!v){render();return}const old=nm(el.dataset.id);W(async()=>{await db.doc('members/'+el.dataset.id).update({name:v});await audit('a_edit',old+' → '+v)})}});
+document.addEventListener('change',e=>{const el=e.target,c=el.dataset&&el.dataset.chg;if(!c)return;if(!need()){render();return}const id=el.dataset.id;
+ if(c==='name'){const v=el.value.trim();if(!v){render();return}const old=nm(id);W(async()=>{await db.doc('members/'+id).update({name:v});await audit('a_edit',old+' -> '+v)})}
+ if(c==='shares'){const v=parseInt(el.value),w=MON.filter(m=>m.w===id).length;
+  if(!(v>=Math.max(1,w))){toast(t('etixlow'));render();return}
+  if(tixUsed()-((MEM[id]||{}).shares||1)+v>CFG.n){toast(t('etixover',{n:CFG.n}));render();return}
+  W(async()=>{await db.doc('members/'+id).update({shares:v});await audit('a_tix',nm(id)+' x'+v)})}});
 document.addEventListener('input',async e=>{if(e.target.id==='q'&&sb&&ADMIN){const q=e.target.value.trim();if(!q){SR=[];showSR();return}try{const r=await sb.from('profiles').select('id,name,email').or('name.ilike.%'+q.replace(/[%,()]/g,'')+'%,email.ilike.%'+q.replace(/[%,()]/g,'')+'%').limit(10);SR=r.data||[]}catch(_){SR=[]}showSR()}});
 $('lang').onchange=async e=>{LANG=e.target.value;try{localStorage.setItem('sr_lang',LANG)}catch(_){}render();if(db&&ME)W(()=>db.collection('data/users/'+ME.id).doc('prefs').set({lang:LANG}))};
-$('theme').onclick=()=>{const r=document.documentElement;r.dataset.theme=getComputedStyle(r).getPropertyValue('--bg').trim()==='#0e1626'?'light':'dark'};
+$('theme').onclick=()=>{const r=document.documentElement;r.dataset.theme=getComputedStyle(r).getPropertyValue('--bg').trim()==='#0a1424'?'light':'dark'};
 addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(['dash','bid','mem','setup','audit'].includes(h)){tab=h;render()}});
 /* ---------- Supabase connection: fill in these two values (see README) ---------- */
-const SUPABASE_URL='https://mutwtspcvmksvqugoskb.supabase.co';
-const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11dHd0c3Bjdm1rc3ZxdWdvc2tiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNTcxNDUsImV4cCI6MjEwODczMzE0NX0.G2aQHEBjV0g9TaxruIaP7APwvkeDA3KgG7EtxTjCZvA';
+const SUPABASE_URL=(window.SR_CONFIG&&window.SR_CONFIG.url)||'PASTE_PROJECT_URL_HERE';
+const SUPABASE_KEY=(window.SR_CONFIG&&window.SR_CONFIG.key)||'PASTE_PUBLIC_ANON_KEY_HERE';
 const sb=(window.supabase&&/^https?:/.test(SUPABASE_URL))?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
 /* Small adapter: the app talks to "db"; this maps it onto one Supabase table (public.docs) */
 const subs=new Set();let tmr=0;const bump=()=>{clearTimeout(tmr);tmr=setTimeout(()=>subs.forEach(f=>f()),150)};
