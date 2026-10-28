@@ -196,8 +196,8 @@ $('lang').onchange=async e=>{LANG=e.target.value;try{localStorage.setItem('sr_la
 $('theme').onclick=()=>{const r=document.documentElement;r.dataset.theme=getComputedStyle(r).getPropertyValue('--bg').trim()==='#0e1626'?'light':'dark'};
 addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(['dash','bid','mem','setup','audit'].includes(h)){tab=h;render()}});
 /* ---------- Supabase connection: fill in these two values (see README) ---------- */
-const SUPABASE_URL='PASTE_PROJECT_URL_HERE';
-const SUPABASE_KEY='PASTE_PUBLIC_ANON_KEY_HERE';
+const SUPABASE_URL='https://mutwtspcvmksvqugoskb.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11dHd0c3Bjdm1rc3ZxdWdvc2tiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNTcxNDUsImV4cCI6MjEwODczMzE0NX0.G2aQHEBjV0g9TaxruIaP7APwvkeDA3KgG7EtxTjCZvA';
 const sb=(window.supabase&&/^https?:/.test(SUPABASE_URL))?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
 /* Small adapter: the app talks to "db"; this maps it onto one Supabase table (public.docs) */
 const subs=new Set();let tmr=0;const bump=()=>{clearTimeout(tmr);tmr=setTimeout(()=>subs.forEach(f=>f()),150)};
